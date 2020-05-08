@@ -1,0 +1,2958 @@
+paths:
+  /account_balance:
+    get:
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            $ref: '#/definitions/balance_response'
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account id to return balance of'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_block_count:
+    get:
+      summary: 'Get number of blocks for a specific account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: integer
+            type: integer            
+            title: block_count
+            description: number of blocks
+            format: int64
+          x-oad-type: response
+      parameters:
+        -   
+          name: account
+          in: query
+          description: 'Account to get number of blocks for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_create:
+    get:
+      summary: 'Creates a new account, insert next deterministic key in wallet'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            properties:
+              acount:
+                x-oad-type: string
+                type: string
+                title: account
+                description: 'created account id'
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to insert new account info'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: 'true by default. If false, disables work generation after creating account'          
+          type: boolean
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_get:
+    get:
+      summary: 'Get account number for the public key'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: account
+            description: account
+            properties:
+              account:
+                x-oad-type: string
+                type: string                
+                description: account number for the publick key
+          x-oad-type: response
+      parameters:
+        -
+          name: key
+          in: query
+          description: Public key to get account for
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_history:
+    get:
+      summary: 'Reports send or receive information for a account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: account history info
+            description: 'Account history info'
+            properties:
+              account:
+                x-oad-type: string
+                type: string
+                title: account
+              history:
+                x-oad-type: object
+                type: object
+                title: history
+                properties:
+                  type: {x-oad-type: string, type: string, title: type}
+                  account: {x-oad-type: string, type: string, title: account}
+                  local_timestamp: {x-oad-type: integer, type: integer, format: int64}
+                  height: {x-oad-type: integer, type: integer, format: int64}
+                  hash: {x-oad-type: string, type: string}
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to get send/receive information for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Number of blocks to return'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_info:
+    get:
+      summary: 'Returns frontier, open block, change representative block, balance, last modified timestamp from local database and block count for account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Account info'
+            description: ' Infor for account'
+            properties:
+              frontier:
+                x-oad-type: string
+                type: string
+              open_block:
+                x-oad-type: string
+                type: string
+              representative_block:
+                x-oad-type: string
+                type: string
+              balance:
+                x-oad-type: string
+                type: string
+              modified_timestamp:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              block_count:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              representative:
+                x-oad-type: string
+                type: string
+              weight:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to return info for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: representatives
+          in: query
+          description: 'if True, also returns the representative block'
+          required: false
+          type: boolean
+          x-oad-type: parameter
+        -
+          name: weight
+          in: query
+          description: 'if True, also returns the voting weight'
+          required: false
+          type: boolean
+          x-oad-type: parameter
+        -
+          name: pending
+          in: query
+          description: 'if True, also returns the pending balance'
+          required: false
+          type: boolean
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_key:
+    get:
+      summary: 'Get the public key for account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Public key for account'
+            description: 'Get the public key for account'
+            properties:
+              key:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to get public key for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_list:
+    get:
+      summary: 'Lists all the accounts inside wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'account list'
+            description: 'Lists all the accounts inside wallet'
+            properties:
+              accounts:
+                x-oad-type: array
+                type: array
+                items:
+                  x-oad-type: string
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to get account list for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_move:
+    get:
+      summary: 'Moves accounts from source to wallet'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'move status'
+            description: 'move status'
+            properties:
+              moved:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: source
+          in: query
+          description: 'wallet to move accounts from'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: wallet
+          in: query
+          description: 'wallet to move accounts to'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: accounts
+          in: query
+          description: 'accounts to move'
+          required: true
+          type: array
+          items:
+            type: string       
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_remove:    
+    get:
+      summary: 'Remove account from wallet'            
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Remove status'
+            description: 'Remove status'
+            properties:
+              moved:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to remove account from'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: account
+          in: query
+          description: 'Account to remove'
+          required: false
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_representative:
+    get:
+      summary: 'Returns the representative for account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Representative for account'
+            description: 'Representative for account'
+            properties:
+              representative:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to return info for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_representative_set:
+    get:
+      summary: 'Sets the representative for account in wallet'
+      responses:
+        '200':
+          description: 'Succeessful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Representative for account'
+            description: 'Representative for account'
+            properties:
+              block:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to use for account'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: account
+          in: query
+          description: 'Account to set representative for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: representative
+          in: query
+          description: 'Representative to set to'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: 'If set, is used as the work for block'
+          required: false
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /account_weight:
+    get:
+      summary: 'Returns the voting weight for account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Account to get voting weight for'
+            description: 'Account to get voting weight for'
+            properties:
+              weight:
+                x-oad-type: integer
+                type: integer
+                format: int64
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /accounts_balances:
+    get:
+      summary: 'Returns how many RAW is owned and how many have not yet been received by accounts list'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Balances by accounts list'
+            description: 'Balances by accounts list'
+            properties:
+              balances:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  type: object                  
+                  properties:
+                    balance:
+                      x-oad-type: integer
+                      type: integer
+                      format: int64
+                    pending:
+                      x-oad-type: integer
+                      type: integer
+                      format: int64
+          x-oad-type: response
+      parameters:
+        -
+          name: accounts
+          in: query
+          description: 'List of accounts to return balances for'
+          required: true
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /accounts_create:
+    get:
+      summary: 'Creates new accounts, insert next deterministic keys in wallet up to count'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Creates new accounts'
+            description: 'Creates new accounts'
+            properties:
+              accounts:
+                x-oad-type: array
+                type: array
+                items:
+                  x-oad-type: string
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to create new accounts in'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Number of accounts to create'
+          required: true
+          type: integer
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: 'If false, disables work generation after creating account'
+          required: false
+          type: boolean
+          x-oad-type: parameter
+    x-oad-type: operation
+  /accounts_frontiers:
+    get:
+      summary: 'Returns a list of pairs of account and block hash representing the head block for accounts list'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: balance
+            description: 'Returns a list of pairs of account and block hash representing the head block for accounts list'
+            properties:
+              frontiers:
+                x-oad-type: object
+                type: object
+                properties:
+                  account: {x-oad-type: string, type: string}
+          x-oad-type: response
+      parameters:
+        -
+          name: accounts
+          in: query
+          description: 'Accounts to return frontier blocks for'
+          required: true
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /accounts_pending:
+    get:
+      summary: 'Returns a list of block hashes which have not yet been received by these accounts'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'List of block hashes'
+            description: 'List of block hashes which have not yet been received by these accounts'
+            properties:
+              blocks:
+                x-oad-type: object
+                type: object
+                properties:
+                  account: {x-oad-type: object, type: object, properties: {hash: {x-oad-type: string, type: string}, blocks: {x-oad-type: string, type: string}}}
+          x-oad-type: response
+      parameters:
+        -
+          name: accounts
+          in: query
+          description: 'Accounts to return frontier blocks for'
+          required: true
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Max number of blocks to returns'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: threshold
+          in: query
+          description: 'Minimum amount in raw per block'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /available_supply:
+    get:
+      summary: 'Returns how many genius are in the public supply'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'public supply'
+            description: 'public supply'
+            properties:
+              available:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+    x-oad-type: operation
+  /block:
+    get:
+      summary: 'Retrieves a json representation of block'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: block
+            description: 'Json representation of block'
+            properties:
+              account:
+                x-oad-type: string
+                type: string
+              work:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              source:
+                x-oad-type: string
+                type: string
+              representative:
+                x-oad-type: string
+                type: string
+              signature:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Hash of block to return representation for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /block_account:
+    get:
+      summary: 'Returns the account containing block'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: account
+            description: 'account containing block'
+            properties:
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /block_count:
+    get:
+      summary: 'Reports the number of blocks in the ledger and unchecked synchronizing blocks'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'number of blocks'
+            description: 'number of blocks'
+            properties:
+              count:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              unchecked:
+                x-oad-type: integer
+                type: integer
+                format: int64
+          x-oad-type: response
+    x-oad-type: operation
+  /block_count_type:
+    get:
+      summary: 'Reports the number of blocks in the ledger by type (send, receive, open, change)'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'number of blocks'
+            description: 'the number of blocks in the ledger by type'
+            properties:
+              send:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              receive:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              open:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              change:
+                x-oad-type: integer
+                type: integer
+                format: int64
+          x-oad-type: response
+    x-oad-type: operation
+  /block_create:
+    get:
+      summary: 'Creates a json representations of new block based on input data & signed with private key or account in wallet for offline signing'
+      responses:
+        '200':
+          description: 'Succeessful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'json representations of new block'
+            description: 'json representations of new block'
+            properties:
+              block:
+                x-oad-type: object
+                type: object
+                properties:
+                  account: {x-oad-type: string, type: string}
+                  previous: {x-oad-type: string, type: string}
+                  signature: {x-oad-type: string, type: string}
+                  representative: {x-oad-type: string, type: string}
+                  type: {x-oad-type: string, type: string}
+                  work: {x-oad-type: string, type: string}
+              hash:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: type
+          in: query
+          description: 'Type of block to create one of open, receive, change, send'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: account
+          in: query
+          description: 'Account for the signed block'
+          required: false
+          type: string
+          x-oad-type: parameter
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to use'
+          required: false
+          type: string
+          x-oad-type: parameter
+        -
+          name: representative
+          in: query
+          description: 'Representative account for open and change blocks'
+          required: false
+          type: string
+          x-oad-type: parameter
+        -
+          name: key
+          in: query
+          description: 'Private key to use to open account for open blocks'
+          required: false
+          type: string
+          x-oad-type: parameter
+        -
+          name: destination
+          in: query
+          description: 'Destination account for send blocks'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: amount
+          in: query
+          description: 'Amount in raw for send blocks'
+          required: true
+          type: integer          
+          format: int64
+          x-oad-type: parameter
+        -
+          name: balance
+          in: query
+          description: 'Balance in raw of account for send blocks'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: previous
+          in: query
+          description: 'Previous block hash for receive, send and change blocks'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: source
+          in: query
+          description: 'Source block for open and receive blocks'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: 'Work value to use for block from external source'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /blocks:
+    get:
+      summary: 'Retrieves a json representations of blocks'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: Blocks
+            description: 'Json representations of blocks'
+            properties:
+              balance:
+                x-oad-type: integer
+                type: integer
+                title: balance
+                description: 'RAW balance'
+                format: int64
+          x-oad-type: response
+      parameters:
+        -
+          name: hashs
+          in: query
+          description: 'List of block hashes to return'
+          required: true
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /blocks_info:
+    get:
+      summary: 'Retrieves a json representations of blocks with transaction amount & block account'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: blocks
+            description: 'Blocks with transaction amount & block account'
+            properties:
+              blocks:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  type: object
+                  properties: {block_account: {x-oad-type: string, type: string}, amount: {x-oad-type: string, type: string}, contents: {x-oad-type: object, type: object, properties: {account: {x-oad-type: string, type: string}, work: {x-oad-type: string, type: string}, source: {x-oad-type: string, type: string}, representative: {x-oad-type: string, type: string}, signature: {x-oad-type: string, type: string}, type: {x-oad-type: string, type: string}}}}
+          x-oad-type: response
+      parameters:
+        -
+          name: hashs
+          in: query
+          description: 'List of block hashes to return'
+          required: true
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
+          x-oad-type: parameter
+        -
+          name: pending
+          in: query
+          description: 'If true, returns pending amount as well'
+          required: false
+          type: string
+          x-oad-type: parameter
+        -
+          name: source
+          in: query
+          description: 'If true, returns source account as well'
+          required: false
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /bootstrap:
+    get:
+      summary: 'Initialize bootstrap to specific IP address and port'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Operation status'
+            description: 'Operation status'
+            properties:
+              success:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: address
+          in: query
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: port
+          in: query
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /bootstrap_any:
+    get:
+      summary: 'Initialize multi-connection bootstrap to random peers'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'Operation status'
+            description: 'Operation status'
+            properties:
+              success:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+    x-oad-type: operation
+  /delegators:
+    get:
+      summary: 'Returns a list of pairs of delegator names given account a representative and its balance'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'delegator list'
+            description: 'list of pairs of delegator names given account a representative and its balance'
+            properties:
+              delegators:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  x-oad-type: string
+                  type: string
+                  description: 'delegaotor name:balance'
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to return delegators for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /delegators_count:
+    get:
+      summary: 'Get number of delegators for a specific representative account'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'number of delegators'
+            description: 'number of delegators'
+            properties:
+              count:
+                x-oad-type: integer
+                type: integer
+                format: int64
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to get number of delegators for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /deterministic_key:
+    get:
+      summary: 'Derive deterministic keypair from seed based on index'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: keypair
+            description: 'keypair from seed'
+            properties:
+              private:
+                x-oad-type: string
+                type: string
+              public:
+                x-oad-type: string
+                type: string
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: seed
+          in: query
+          description: 'Seed used to get keypair'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: index
+          in: query
+          description: 'Index of the generated keypair'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /frontier_count:
+    get:
+      summary: 'Reports the number of accounts in the ledger'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'number of accounts'
+            description: 'Reports the number of accounts in the ledger'
+            properties:
+              count:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              public:
+                x-oad-type: string
+                type: string
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+    x-oad-type: operation
+  /frontiers:
+    get:
+      summary: 'Returns a list of pairs of account and block hash representing the head block starting at account up to'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'pairs of account and block hash'
+            description: 'pairs of account and block hash'
+            properties:
+              frontiers:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  x-oad-type: string
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to get frontier blocks for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Max amount to return'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /history:
+    get:
+      summary: 'Reports send/receive information for a chain of blocks'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'send/receive information'
+            description: 'Reports send/receive information for a chain of blocks'
+            properties:
+              hash:
+                x-oad-type: string
+                type: string
+              type:
+                x-oad-type: string
+                type: string
+              account:
+                x-oad-type: string
+                type: string
+              amount:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Hash of block to receive history for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Max number of blocks to return'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /keepalive:
+    get:
+      summary: 'Tells the node to send a keepalive packet to address:port'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'node to send a keepalive packet'
+            description: 'node to send a keepalive packet'
+            properties:
+              started:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: address
+          in: query
+          description: 'IP address of node to send keepalive packet to'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Port of node to send keepalive packet to'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /key_create:
+    get:
+      summary: 'Generates an adhoc random keypair'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'adhoc random keypair'
+            description: 'Generates an adhoc random keypair'
+            properties:
+              prevate:
+                x-oad-type: string
+                type: string
+              public:
+                x-oad-type: string
+                type: string
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+    x-oad-type: operation
+  /key_expand:
+    get:
+      summary: 'Derive public key and account number from private key'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'send/receive information'
+            description: 'Reports send/receive information for a chain of blocks'
+            properties:
+              private:
+                x-oad-type: string
+                type: string
+              public:
+                x-oad-type: string
+                type: string
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: key
+          in: query
+          description: 'Private key to generate account and public key of'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /krai_from_raw:
+    get:
+      summary: 'Divide a raw amount down by the krai ratio'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'send/receive information'
+            description: 'Reports send/receive information for a chain of blocks'
+            properties:
+              amount:
+                x-oad-type: integer
+                type: integer
+                format: int64
+          x-oad-type: response
+      parameters:
+        -
+          name: amount
+          in: query
+          description: 'Amount in raw to convert to krai'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /krai_to_raw:
+    get:
+      summary: 'Multiply an krai amount by the krai ratio'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'krai amount'
+            description: 'Multiply an krai amount by the krai ratio.'
+            properties:
+              amount:
+                x-oad-type: integer
+                type: integer
+                format: int64
+          x-oad-type: response
+      parameters:
+        -
+          name: amount
+          in: query
+          description: 'Amount in kria to convert to raw'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /ledger:
+    get:
+      summary: 'Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at account up to count'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'ledger information'
+            description: 'Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at account up to count'
+            properties:
+              accounts:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  type: object
+                  x-oad-type: object
+                  properties: {frontier: {x-oad-type: string, type: string}, open_block: {x-oad-type: string, type: string}, representative_block: {x-oad-type: string, type: string}, balance: {x-oad-type: integer, type: integer, format: int64}, modified_timestamp: {x-oad-type: integer, type: integer, format: int64}, block_count: {x-oad-type: integer, type: integer, format: int64}}
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to return blocks for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Max number of blocks to return'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: representative
+          in: query
+          description: 'If use true, returns the representative as well'
+          required: true
+          type: boolean
+          x-oad-type: parameter
+        -
+          name: weight
+          in: query
+          description: 'If use true, returns the voting weight as well'
+          required: true
+          type: boolean
+          x-oad-type: parameter
+        -
+          name: pending
+          in: query
+          description: 'If use true, returns the pending amount as well'
+          required: true
+          type: boolean
+          x-oad-type: parameter
+        -
+          name: sorting
+          in: query
+          description: 'If use true, returns the pending amount as well'
+          required: true
+          type: boolean
+          x-oad-type: parameter
+    x-oad-type: operation
+  /password_change:
+    get:
+      summary: 'Changes the password for wallet to password'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'changed status'
+            description: 'changed status'
+            properties:
+              changed:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to change password for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: password
+          in: query
+          description: 'Password to set'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /password_enter:
+    get:
+      summary: 'Enter the password in to wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'send/receive information'
+            description: 'Reports send/receive information for a chain of blocks'
+            properties:
+              valid:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to enter password for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: password
+          in: query
+          description: 'Password to enter'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /password_valid:
+    get:
+      summary: 'Checks whether the password entered for wallet is valid'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'valid status'
+            description: 'valid status'
+            properties:
+              valid:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to check password for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /payment_begin:
+    get:
+      summary: 'Begin a new payment session. Searches wallet for an account that’s marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'send/receive information'
+            description: 'Reports send/receive information for a chain of blocks'
+            properties:
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to begin payment in'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /payment_end:
+    get:
+      summary: 'End a payment session. Marks the account as available for use in a payment session'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: status
+            description: 'status '
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to mark available'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to end payment session for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /payment_init:
+    get:
+      summary: 'Marks all accounts in wallet as available for being used as a payment session'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: status
+            description: status
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to init payment in'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /payment_wait:
+    get:
+      summary: 'Wait for payment of amount to arrive in account or until timeout milliseconds have elapsed'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'wait status'
+            description: 'wait status'
+            properties:
+              hash:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to wait for payment'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: amount
+          in: query
+          description: 'Amount in raw of funds to wait for payment to arrive'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: timeout
+          in: query
+          description: 'Timeout in milliseconds to wait for'
+          required: false
+          type: integer
+          x-oad-type: parameter
+    x-oad-type: operation
+  /peers:
+    get:
+      summary: 'Returns a list of pairs IPv6:port and its node network version'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'peers list'
+            description: 'list of pairs IPv6 and port'
+            properties:
+              hash:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+    x-oad-type: operation
+  /pending:
+    get:
+      summary: 'Returns a list of pending block hashes with amount more or equal to threshold'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'hash list'
+            description: 'list of pending block hashs'
+            properties:
+              blocks:
+                x-oad-type: array
+                type: array
+                items:
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account to get list of pending block hashes for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Max blocks to return'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: threshold
+          in: query
+          description: 'Minimum amount in raw for blocks'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: source
+          in: query
+          description: 'If true, returns source address as well'
+          required: true
+          type: boolean
+          x-oad-type: parameter
+    x-oad-type: operation
+  /pending_exists:
+    get:
+      summary: 'Check whether block is pending by hash'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'status checked'
+            description: 'status checked'
+            properties:
+              exists:
+                x-oad-type: boolean
+                type: boolean                
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Account to get list of pending block hashes for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /process:
+    get:
+      summary: 'Publish block to the network'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash'
+            description: 'block hash published'
+            properties:
+              hash:
+                x-oad-type: string
+                type: string                
+          x-oad-type: response
+      parameters:
+        -
+          name: block
+          in: query
+          description: 'Block to publish'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /receive:
+    get:
+      summary: 'Receive pending block for account in wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash'
+            description: 'block hash for account'
+            properties:
+              hash:
+                x-oad-type: string
+                type: string                
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Block to publish'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: account
+          in: query
+          description: Account to receive block for
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: block
+          in: query
+          description: Block hash to receive
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: If set, uses this work for the receive block
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /receive_minium:
+    get:
+      summary: 'Returns receive minimum for node'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'minimum amount'
+            description: 'receive minimum amount'
+            properties:
+              amount:
+                x-oad-type: string
+                type: string                
+          x-oad-type: response
+    x-oad-type: operation
+  /receive_minium_set:
+    get:
+      summary: 'Set amount as new receive minimum for node until restart'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'set status'
+            description: 'set status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean                
+          x-oad-type: response
+      parameters:
+        -
+          name: amount
+          in: query
+          description: 'Amount in raw to set as minimum to receive'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /representative:
+    get:
+      summary: 'Returns a list of pairs of representative and its voting weight'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash'
+            description: 'block hash for account'
+            properties:
+              hash:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  x-oad-type: string
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: count
+          in: query
+          description: 'Max amount of representatives to return'
+          required: false
+          type: integer
+          format: int64
+          x-oad-type: parameter        
+        -
+          name: sorting
+          in: query
+          description: If true, sorts by weight
+          required: false
+          type: boolean
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /republish:
+    get:
+      summary: 'Rebroadcast blocks starting at hash to the network'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'hash list'
+            description: 'hash list'
+            properties:
+              blocks:
+                x-oad-type: array
+                type: array
+                items:
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Hash of block to start rebroadcasting from'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: count
+          in: query
+          description: Max number of blocks to rebroadcast
+          required: false
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: sources
+          in: query
+          description: If set, additionally rebroadcasts source chain blocks for receive/open up to sources depth
+          required: false
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: descriptions
+          in: query
+          description: If set, additionally rebroadcasts destination chain blocks for receive/open up to destination depth
+          required: false
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /search_pending:
+    get:
+      summary: 'Tells the node to look for pending blocks for any account in wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'search status'
+            description: 'search status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to search for pending blocks'
+          required: true
+          type: string            
+          x-oad-type: parameter 
+    x-oad-type: operation
+  /search_pending_all:
+    get:
+      summary: 'Tells the node to look for pending blocks for any account in all available wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'operation status'
+            description: 'operation status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean
+          x-oad-type: response
+    x-oad-type: operation
+  /send:
+    get:
+      summary: 'Send amount from source in wallet to destination'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash'
+            description: 'block hash for account'
+            properties:
+              hash:
+                x-oad-type: string
+                type: string                
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet of account used to send funds'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: source
+          in: query
+          description: Account to send funds from
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: destination
+          in: query
+          description: Account to send funds to
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: amount
+          in: query
+          description: Amount in raw to send
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: If set, uses this work for the block
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: id
+          in: query
+          description: Account to send funds to
+          required: false
+          type: string
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /stop:
+    get:
+      summary: 'Stop the node'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'stopped status'
+            description: 'stopped status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response     
+    x-oad-type: operation
+  /successors:
+    get:
+      summary: 'Returns a list of block hashes in the account chain ending at block up to count'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hashs'
+            description: 'list of block hashes'
+            properties:
+              blocks:
+                x-oad-type: array
+                type: array
+                items:
+                  x-oad-type: string
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: block
+          in: query
+          description: 'Hash of block to start returning successors for'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: Max number of successor blocks to return
+          in: query
+          description: Account to receive block for
+          required: true
+          type: integer
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /unchecked:
+    get:
+      summary: 'Returns a list of pairs of unchecked synchronizing block hash and its json representation up to count'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash list'
+            description: 'list of pairs of unchecked synchronizing'
+            properties:
+              blocks:
+                x-oad-type: array
+                type: array
+                items:
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: count
+          in: query
+          description: 'Max amount of unchecked blocks to return'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: account
+          in: query
+          description: Account to receive block for
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: block
+          in: query
+          description: Block hash to receive
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: If set, uses this work for the receive block
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /unchecked_clear:
+    get:
+      summary: 'Clear unchecked synchronizing blocks'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'clear status'
+            description: 'clear status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean                
+          x-oad-type: response      
+    x-oad-type: operation
+  /unchecked_get:
+    get:
+      summary: 'Retrieves a json representation of unchecked synchronizing block by hash'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'unchecked block data'
+            description: 'unchecked block data'
+            properties:
+              account:
+                x-oad-type: string
+                type: string                
+              work:
+                x-oad-type: string
+                type: string
+              source:
+                x-oad-type: string
+                type: string
+              representative:
+                x-oad-type: string
+                type: string
+              signature:
+                x-oad-type: string
+                type: string
+              type:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Hash of unchecked block to get'
+          required: true
+          type: string
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /unchecked_keys:
+    get:
+      summary: 'Retrieves unchecked database keys, blocks hashes, and a json representation of unchecked pending blocks starting from key up to count'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'unchecked block datas'
+            description: 'unchecked keys, blocks hashes'
+            properties:
+              unchecked:
+                x-oad-type: array
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:                      
+                      type: string
+                    hash:
+                      type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: key
+          in: query
+          description: 'Starting key to return unchecked keys for'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: count
+          in: query
+          description: 'Max number of keys/blocks to return'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /validate_account_number:
+    get:
+      summary: 'Check whether account is a valid account number'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'check status'
+            description: 'check status'
+            properties:
+              checked:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: account
+          in: query
+          description: 'Account number to check'
+          required: true
+          type: string            
+          x-oad-type: parameter          
+    x-oad-type: operation
+  /version:
+    get:
+      summary: 'Returns GRPC version of node'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash'
+            description: 'block hash for account'
+            properties:
+              grpc_version:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              store_version:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              node_vendor:
+                x-oad-type: string
+                type: string                
+          x-oad-type: response      
+    x-oad-type: operation
+  /wallet_add:
+    get:
+      summary: 'Add an adhoc private key key to wallet'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'account number'
+            description: 'account number added'
+            properties:
+              account:
+                x-oad-type: string
+                type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to add private key to'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: key
+          in: query
+          description: 'Private key to add'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: If false, disables work generation
+          required: false
+          type: boolean
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /wallet_balance_total:
+    get:
+      summary: 'Returns the sum of all accounts balances in wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'balances sum'
+            description: 'sum of all accounts balance in wallet'
+            properties:
+              balance:
+                x-oad-type: integer
+                type: integer
+                format: int64
+              pending:
+                x-oad-type: integer
+                type: integer
+                format: int64                
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to return balance for'
+          required: true
+          type: string            
+          x-oad-type: parameter                
+    x-oad-type: operation
+  /wallet_change_seed:
+    get:
+      summary: 'Changes seed for wallet to seed'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'change status'
+            description: 'change status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to change seed for'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: seed
+          in: query
+          description: Seed to change wallet to
+          required: true
+          type: string
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /wallet_contains:
+    get:
+      summary: 'Check whether wallet contains account'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'check status'
+            description: 'check status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to check contains account'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: account
+          in: query
+          description: 'Account to check exists in wallet'
+          required: true
+          type: string
+          x-oad-type: parameter        
+    x-oad-type: operation
+  /wallet_create:
+    get:
+      summary: 'Creates a new random wallet id'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'created wallet id'
+            description: 'creaed wallet id'
+            properties:
+              wallet:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response      
+    x-oad-type: operation
+  /wallet_destory:
+    get:
+      summary: 'Destroys wallet and all contained accounts'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'destroy status'
+            description: 'destroy status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to destroy'
+          required: true
+          type: string            
+          x-oad-type: parameter                
+    x-oad-type: operation
+  /wallet_export:
+    get:
+      summary: 'Return a json representation of wallet'
+      responses:
+        '200':
+          description: 'Succeessful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'wallet'
+            description: 'wallet'
+            properties:
+              wallet:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to export'
+          required: true
+          type: string            
+          x-oad-type: parameter            
+    x-oad-type: operation
+  /wallet_frontiers:
+    get:
+      summary: 'Returns a list of pairs of account and block hash representing the head block starting for accounts from'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'account and hash pairs'
+            description: 'change status'
+            properties:
+              frontiers:
+                x-oad-type: object                
+                type: object
+                additionalProperties:
+                  type: string
+                  x-oad-type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to return frontiers for'
+          required: true
+          type: string                 
+    x-oad-type: operation
+  /wallet_key_valid:
+    get:
+      summary: 'Returns if a wallet key is valid'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'valid status'
+            description: 'valid status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to check key is valid'
+          required: true
+          type: string            
+          x-oad-type: parameter                
+    x-oad-type: operation
+  /wallet_lock:
+    get:
+      summary: 'Locks a wallet'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'change status'
+            description: 'change status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to lock'
+          required: true
+          type: string            
+          x-oad-type: parameter                
+    x-oad-type: operation
+  /wallet_locked:
+    get:
+      summary: 'Checks whether wallet is locked'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'locked status'
+            description: 'locked status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to check if locked'
+          required: true
+          type: string            
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /wallet_pending:
+    get:
+      summary: 'Returns a list of block hashes which not yet been received by accounts in this wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'hashes'
+            description: 'hashes'
+            properties:
+              hashes:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  type: string
+                  x-oad-type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to get list of pending block hashes for'
+          required: true
+          type: string            
+          x-oad-type: parameter        
+        -
+          name: count
+          in: query
+          description: Max amount of blocks to return
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter        
+        -
+          name: threthold
+          in: query
+          description: Minimum amount in raw per block
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /wallet_representative:
+    get:
+      summary: 'Returns the default representative for wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'account'
+            description: 'default representative'
+            properties:
+              representative:
+                x-oad-type: string
+                type: string    
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to get default representative for'
+          required: true
+          type: string            
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /wallet_representative_set:
+    get:
+      summary: 'Sets the default representative for wallet'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object    
+            title: 'set status'
+            description: 'set status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to set default representative account for'
+          required: true
+          type: string            
+          x-oad-type: parameter
+        -
+          name: representative
+          in: query
+          description: 'Representative account to set for wallet'
+          required: true
+          type: string            
+          x-oad-type: parameter
+    x-oad-type: operation
+  /wallet_republish:
+    get:
+      summary: 'Rebroadcast blocks for accounts from wallet starting at frontier down to count to the network'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'block hash list'
+            description: 'block hash list'
+            properties:
+              hashes:
+                x-oad-type: array
+                type: array
+                items:
+                  type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to rebroadcast blocks for'
+          required: true
+          type: string            
+          x-oad-type: parameter
+        -
+          name: count
+          in: query
+          description: 'Max amount of blocks to rebroadcast since frontier block'
+          required: true
+          type: integer
+          format: int64
+          x-oad-type: parameter
+    x-oad-type: operation
+  /wallet_unlock:
+    get:
+      summary: 'Unlocks wallet using password'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'unlock status'
+            description: 'unlock status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to unlock'
+          required: true
+          type: string            
+          x-oad-type: parameter
+        -
+          name: password
+          in: query
+          description: 'Password to enter'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /wallet_work_get:
+    get:
+      summary: 'Returns a list of pairs of account and work from wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'pairs of account and work'
+            description: 'pairs of account and work'
+            properties:
+              works:
+                x-oad-type: object
+                type: object
+                additionalProperties:
+                  type: string
+                  x-oad-type: string
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to return work for'
+          required: true
+          type: string
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /work_cancel:
+    get:
+      summary: 'Stop generating work for block'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'stop status'
+            description: 'stop status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Hash to stop generating work for'
+          required: true
+          type: string            
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /work_generate:
+    get:
+      summary: 'Generates work for block'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'work'
+            description: 'work'
+            properties:
+              work:
+                x-oad-type: string
+                type: string    
+          x-oad-type: response
+      parameters:
+        -
+          name: hash
+          in: query
+          description: 'Hash to start generating work for'
+          required: true
+          type: string            
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /work_get:
+    get:
+      summary: 'Retrieves work for account in wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'work'
+            description: 'work'
+            properties:
+              work:
+                x-oad-type: string
+                type: string    
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to get account work for'
+          required: true
+          type: string            
+          x-oad-type: parameter
+        -
+          name: account
+          in: query
+          description: 'Account to get work for'
+          required: true
+          type: string            
+          x-oad-type: parameter
+    x-oad-type: operation
+  /work_peer_add:
+    get:
+      summary: 'Add specific IP address and port as work peer for node until restart'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'locked status'
+            description: 'locked status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to check if locked'
+          required: true
+          type: string            
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /work_peers:
+    get:
+      summary: 'Retreive work peers'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'locked status'
+            description: 'locked status'
+            properties:
+              peers:
+                x-oad-type: string
+                type: string    
+          x-oad-type: response                 
+    x-oad-type: operation
+  /work_peers_clear:
+    get:
+      summary: 'Clear work peers node list until restart'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'clear status'
+            description: 'clear status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response      
+    x-oad-type: operation
+  /work_set:
+    get:
+      summary: 'Set work for account in wallet'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'set status'
+            description: 'set status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to set work for account for'
+          required: true
+          type: string            
+          x-oad-type: parameter
+        -
+          name: account
+          in: query
+          description: 'Account to set work for'
+          required: true
+          type: string
+          x-oad-type: parameter
+        -
+          name: work
+          in: query
+          description: 'Work to set for account in wallet'
+          required: true
+          type: string
+          x-oad-type: parameter              
+    x-oad-type: operation
+  /work_validate:
+    get:
+      summary: 'Check whether work is valid for block'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            x-oad-type: object
+            type: object
+            title: 'check status'
+            description: 'check status'
+            properties:
+              status:
+                x-oad-type: boolean
+                type: boolean         
+          x-oad-type: response
+      parameters:
+        -
+          name: work
+          in: query
+          description: 'Work to validate'
+          required: true
+          type: string            
+          x-oad-type: parameter
+        -
+          name: hash
+          in: query
+          description: 'Hash of block to validate work for'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+definitions:
+  balance_response:
+    x-oad-type: object
+    type: object
+    title: balance
+    description: 'Raw balance of the account'
+    properties:
+      balance:
+        x-oad-type: integer
+        type: integer
+        title: balance
+        description: 'RAW balance'
+        format: int64
+      pending:
+        x-oad-type: integer
+        type: integer
+        title: pending
+        description: 'Pending Balance of RAW not received'
+        format: int64
+  
+  block:
+    type: object
+    required:
+      - account      
+    properties:
+      account:
+        type: string
+      wallet:
+        type: integer
+
+info:
+  title: 'SuperGenius Tokens GRPC'
+  version: '1.0'
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+swagger: '2.0'
