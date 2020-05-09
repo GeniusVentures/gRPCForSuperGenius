@@ -5,7 +5,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            $ref: '#/definitions/balance_response'
+            $ref: '#/definitions/balance_info'
           x-oad-type: response
       parameters:
         -
@@ -23,11 +23,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: integer
-            type: integer            
-            title: block_count
-            description: number of blocks
-            format: int64
+            $ref: '#/definitions/block_count_info'            
           x-oad-type: response
       parameters:
         -   
@@ -44,15 +40,8 @@ paths:
       responses:
         '200':
           description: 'Successful operation'
-          schema:
-            x-oad-type: object
-            type: object
-            properties:
-              acount:
-                x-oad-type: string
-                type: string
-                title: account
-                description: 'created account id'
+          schema:     
+            $ref: '#/definitions/account'       
           x-oad-type: response
       parameters:
         -
@@ -75,16 +64,8 @@ paths:
       responses:
         '200':
           description: 'Successful result'
-          schema:
-            x-oad-type: object
-            type: object
-            title: account
-            description: account
-            properties:
-              account:
-                x-oad-type: string
-                type: string                
-                description: account number for the publick key
+          schema:               
+            $ref: '#/definitions/account'
           x-oad-type: response
       parameters:
         -
@@ -102,25 +83,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: account history info
-            description: 'Account history info'
-            properties:
-              account:
-                x-oad-type: string
-                type: string
-                title: account
-              history:
-                x-oad-type: object
-                type: object
-                title: history
-                properties:
-                  type: {x-oad-type: string, type: string, title: type}
-                  account: {x-oad-type: string, type: string, title: account}
-                  local_timestamp: {x-oad-type: integer, type: integer, format: int64}
-                  height: {x-oad-type: integer, type: integer, format: int64}
-                  hash: {x-oad-type: string, type: string}
+            $ref: '#/definitions/account_history'
           x-oad-type: response
       parameters:
         -
@@ -146,37 +109,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Account info'
-            description: ' Infor for account'
-            properties:
-              frontier:
-                x-oad-type: string
-                type: string
-              open_block:
-                x-oad-type: string
-                type: string
-              representative_block:
-                x-oad-type: string
-                type: string
-              balance:
-                x-oad-type: string
-                type: string
-              modified_timestamp:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              block_count:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              representative:
-                x-oad-type: string
-                type: string
-              weight:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/account_info'
           x-oad-type: response
       parameters:
         -
@@ -215,14 +148,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Public key for account'
-            description: 'Get the public key for account'
-            properties:
-              key:
-                x-oad-type: string
-                type: string
+           $ref: '#/definitions/key'
           x-oad-type: response
       parameters:
         -
@@ -240,17 +166,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'account list'
-            description: 'Lists all the accounts inside wallet'
-            properties:
-              accounts:
-                x-oad-type: array
-                type: array
-                items:
-                  x-oad-type: string
-                  type: string
+            $ref: '#/definitions/accounts'
           x-oad-type: response
       parameters:
         -
@@ -268,14 +184,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'move status'
-            description: 'move status'
-            properties:
-              moved:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -309,14 +218,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Remove status'
-            description: 'Remove status'
-            properties:
-              moved:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -341,14 +243,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Representative for account'
-            description: 'Representative for account'
-            properties:
-              representative:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/representative'
           x-oad-type: response
       parameters:
         -
@@ -366,14 +261,7 @@ paths:
         '200':
           description: 'Succeessful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Representative for account'
-            description: 'Representative for account'
-            properties:
-              block:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/block_hash'
           x-oad-type: response
       parameters:
         -
@@ -412,15 +300,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Account to get voting weight for'
-            description: 'Account to get voting weight for'
-            properties:
-              weight:
-                x-oad-type: integer
-                type: integer
-                format: int64
+            $ref: '#/definitions/weight'
           x-oad-type: response
       parameters:
         -
@@ -437,25 +317,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Balances by accounts list'
-            description: 'Balances by accounts list'
-            properties:
-              balances:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  type: object                  
-                  properties:
-                    balance:
-                      x-oad-type: integer
-                      type: integer
-                      format: int64
-                    pending:
-                      x-oad-type: integer
-                      type: integer
-                      format: int64
+            $ref: '#/definitions/account_balance_info_pairs'
           x-oad-type: response
       parameters:
         -
@@ -476,17 +338,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Creates new accounts'
-            description: 'Creates new accounts'
-            properties:
-              accounts:
-                x-oad-type: array
-                type: array
-                items:
-                  x-oad-type: string
-                  type: string
+            $ref: '#/definitions/accounts'
           x-oad-type: response
       parameters:
         -
@@ -518,16 +370,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: balance
-            description: 'Returns a list of pairs of account and block hash representing the head block for accounts list'
-            properties:
-              frontiers:
-                x-oad-type: object
-                type: object
-                properties:
-                  account: {x-oad-type: string, type: string}
+            $ref: '#/definitions/account_frontier_pairs'
           x-oad-type: response
       parameters:
         -
@@ -548,16 +391,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'List of block hashes'
-            description: 'List of block hashes which have not yet been received by these accounts'
-            properties:
-              blocks:
-                x-oad-type: object
-                type: object
-                properties:
-                  account: {x-oad-type: object, type: object, properties: {hash: {x-oad-type: string, type: string}, blocks: {x-oad-type: string, type: string}}}
+           $ref: '#/definitions/account_hash_pairs'
           x-oad-type: response
       parameters:
         -
@@ -594,14 +428,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'public supply'
-            description: 'public supply'
-            properties:
-              available:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/available_supply'
           x-oad-type: response
     x-oad-type: operation
   /block:
@@ -611,27 +438,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: block
-            description: 'Json representation of block'
-            properties:
-              account:
-                x-oad-type: string
-                type: string
-              work:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              source:
-                x-oad-type: string
-                type: string
-              representative:
-                x-oad-type: string
-                type: string
-              signature:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/block'
           x-oad-type: response
       parameters:
         -
@@ -649,14 +456,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: account
-            description: 'account containing block'
-            properties:
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/account'
           x-oad-type: response
       parameters:
         -
@@ -673,19 +473,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'number of blocks'
-            description: 'number of blocks'
-            properties:
-              count:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              unchecked:
-                x-oad-type: integer
-                type: integer
-                format: int64
+            $ref: '#/definitions/block_count_info'
           x-oad-type: response
     x-oad-type: operation
   /block_count_type:
@@ -695,27 +483,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'number of blocks'
-            description: 'the number of blocks in the ledger by type'
-            properties:
-              send:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              receive:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              open:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              change:
-                x-oad-type: integer
-                type: integer
-                format: int64
+            $ref: '#/definitions/block_count_by_type'
           x-oad-type: response
     x-oad-type: operation
   /block_create:
@@ -725,24 +493,7 @@ paths:
         '200':
           description: 'Succeessful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'json representations of new block'
-            description: 'json representations of new block'
-            properties:
-              block:
-                x-oad-type: object
-                type: object
-                properties:
-                  account: {x-oad-type: string, type: string}
-                  previous: {x-oad-type: string, type: string}
-                  signature: {x-oad-type: string, type: string}
-                  representative: {x-oad-type: string, type: string}
-                  type: {x-oad-type: string, type: string}
-                  work: {x-oad-type: string, type: string}
-              hash:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/block_hash_info'
           x-oad-type: response
       parameters:
         -
@@ -832,17 +583,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: Blocks
-            description: 'Json representations of blocks'
-            properties:
-              balance:
-                x-oad-type: integer
-                type: integer
-                title: balance
-                description: 'RAW balance'
-                format: int64
+            $ref: '#/definitions/hash_block_pairs'
           x-oad-type: response
       parameters:
         -
@@ -863,17 +604,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: blocks
-            description: 'Blocks with transaction amount & block account'
-            properties:
-              blocks:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  type: object
-                  properties: {block_account: {x-oad-type: string, type: string}, amount: {x-oad-type: string, type: string}, contents: {x-oad-type: object, type: object, properties: {account: {x-oad-type: string, type: string}, work: {x-oad-type: string, type: string}, source: {x-oad-type: string, type: string}, representative: {x-oad-type: string, type: string}, signature: {x-oad-type: string, type: string}, type: {x-oad-type: string, type: string}}}}
+            $ref: '#/definitions/blocks_info'
           x-oad-type: response
       parameters:
         -
@@ -908,14 +639,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Operation status'
-            description: 'Operation status'
-            properties:
-              success:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -939,14 +663,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'Operation status'
-            description: 'Operation status'
-            properties:
-              success:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
     x-oad-type: operation
   /delegators:
@@ -956,18 +673,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'delegator list'
-            description: 'list of pairs of delegator names given account a representative and its balance'
-            properties:
-              delegators:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  x-oad-type: string
-                  type: string
-                  description: 'delegaotor name:balance'
+            $ref: '#/definitions/account_balance_pairs'
           x-oad-type: response
       parameters:
         -
@@ -983,17 +689,7 @@ paths:
       summary: 'Get number of delegators for a specific representative account'
       responses:
         '200':
-          description: 'Successful result'
-          schema:
-            x-oad-type: object
-            type: object
-            title: 'number of delegators'
-            description: 'number of delegators'
-            properties:
-              count:
-                x-oad-type: integer
-                type: integer
-                format: int64
+          $ref: '#/definitions/count'
           x-oad-type: response
       parameters:
         -
@@ -1011,20 +707,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: keypair
-            description: 'keypair from seed'
-            properties:
-              private:
-                x-oad-type: string
-                type: string
-              public:
-                x-oad-type: string
-                type: string
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/keypair'
           x-oad-type: response
       parameters:
         -
@@ -1050,21 +733,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'number of accounts'
-            description: 'Reports the number of accounts in the ledger'
-            properties:
-              count:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              public:
-                x-oad-type: string
-                type: string
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/frontier_count'
           x-oad-type: response
     x-oad-type: operation
   /frontiers:
@@ -1074,17 +743,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'pairs of account and block hash'
-            description: 'pairs of account and block hash'
-            properties:
-              frontiers:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  x-oad-type: string
-                  type: string
+            $ref: '#/definitions/account_hash_pairs'
           x-oad-type: response
       parameters:
         -
@@ -1110,23 +769,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'send/receive information'
-            description: 'Reports send/receive information for a chain of blocks'
-            properties:
-              hash:
-                x-oad-type: string
-                type: string
-              type:
-                x-oad-type: string
-                type: string
-              account:
-                x-oad-type: string
-                type: string
-              amount:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/blockchain_history'
           x-oad-type: response
       parameters:
         -
@@ -1152,14 +795,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'node to send a keepalive packet'
-            description: 'node to send a keepalive packet'
-            properties:
-              started:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1185,20 +821,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'adhoc random keypair'
-            description: 'Generates an adhoc random keypair'
-            properties:
-              prevate:
-                x-oad-type: string
-                type: string
-              public:
-                x-oad-type: string
-                type: string
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/keypair'
           x-oad-type: response
     x-oad-type: operation
   /key_expand:
@@ -1208,20 +831,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'send/receive information'
-            description: 'Reports send/receive information for a chain of blocks'
-            properties:
-              private:
-                x-oad-type: string
-                type: string
-              public:
-                x-oad-type: string
-                type: string
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/keypair'
           x-oad-type: response
       parameters:
         -
@@ -1239,15 +849,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'send/receive information'
-            description: 'Reports send/receive information for a chain of blocks'
-            properties:
-              amount:
-                x-oad-type: integer
-                type: integer
-                format: int64
+            $ref: '#/definitions/amount'
           x-oad-type: response
       parameters:
         -
@@ -1266,15 +868,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'krai amount'
-            description: 'Multiply an krai amount by the krai ratio.'
-            properties:
-              amount:
-                x-oad-type: integer
-                type: integer
-                format: int64
+            $ref: '#/definitions/amount'
           x-oad-type: response
       parameters:
         -
@@ -1293,18 +887,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'ledger information'
-            description: 'Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at account up to count'
-            properties:
-              accounts:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  type: object
-                  x-oad-type: object
-                  properties: {frontier: {x-oad-type: string, type: string}, open_block: {x-oad-type: string, type: string}, representative_block: {x-oad-type: string, type: string}, balance: {x-oad-type: integer, type: integer, format: int64}, modified_timestamp: {x-oad-type: integer, type: integer, format: int64}, block_count: {x-oad-type: integer, type: integer, format: int64}}
+            $ref: '#/definitions/account_ledger_pairs'
           x-oad-type: response
       parameters:
         -
@@ -1358,14 +941,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'changed status'
-            description: 'changed status'
-            properties:
-              changed:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1390,14 +966,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'send/receive information'
-            description: 'Reports send/receive information for a chain of blocks'
-            properties:
-              valid:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1422,14 +991,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'valid status'
-            description: 'valid status'
-            properties:
-              valid:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1447,14 +1009,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'send/receive information'
-            description: 'Reports send/receive information for a chain of blocks'
-            properties:
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/account'
           x-oad-type: response
       parameters:
         -
@@ -1472,14 +1027,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: status
-            description: 'status '
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1504,14 +1052,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: status
-            description: status
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1529,14 +1070,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'wait status'
-            description: 'wait status'
-            properties:
-              hash:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1569,14 +1103,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'peers list'
-            description: 'list of pairs IPv6 and port'
-            properties:
-              hash:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/peer_port_pairs'
           x-oad-type: response
     x-oad-type: operation
   /pending:
@@ -1586,16 +1113,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'hash list'
-            description: 'list of pending block hashs'
-            properties:
-              blocks:
-                x-oad-type: array
-                type: array
-                items:
-                  type: string
+            $ref: '#/definitions/block_hashs'
           x-oad-type: response
       parameters:
         -
@@ -1636,14 +1154,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'status checked'
-            description: 'status checked'
-            properties:
-              exists:
-                x-oad-type: boolean
-                type: boolean                
+            $ref: '#/definitions/status'                
           x-oad-type: response
       parameters:
         -
@@ -1661,14 +1172,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash'
-            description: 'block hash published'
-            properties:
-              hash:
-                x-oad-type: string
-                type: string                
+            $ref: '#/definitions/block_hash'               
           x-oad-type: response
       parameters:
         -
@@ -1686,14 +1190,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash'
-            description: 'block hash for account'
-            properties:
-              hash:
-                x-oad-type: string
-                type: string                
+            $ref: '#/definitions/block_hash'                
           x-oad-type: response
       parameters:
         -
@@ -1732,14 +1229,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'minimum amount'
-            description: 'receive minimum amount'
-            properties:
-              amount:
-                x-oad-type: string
-                type: string                
+            $ref: '#/definitions/amount'                
           x-oad-type: response
     x-oad-type: operation
   /receive_minium_set:
@@ -1749,14 +1239,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'set status'
-            description: 'set status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean                
+            $ref: '#/definitions/status'                
           x-oad-type: response
       parameters:
         -
@@ -1775,17 +1258,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash'
-            description: 'block hash for account'
-            properties:
-              hash:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  x-oad-type: string
-                  type: string
+            $ref: '#/definitions/representative_weight_pairs'
           x-oad-type: response
       parameters:
         -
@@ -1811,16 +1284,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'hash list'
-            description: 'hash list'
-            properties:
-              blocks:
-                x-oad-type: array
-                type: array
-                items:
-                  type: string
+            $ref: '#/definitions/block_hashs'
           x-oad-type: response
       parameters:
         -
@@ -1862,14 +1326,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'search status'
-            description: 'search status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
       parameters:
         -
@@ -1887,14 +1344,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'operation status'
-            description: 'operation status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean
+            $ref: '#/definitions/status'
           x-oad-type: response
     x-oad-type: operation
   /send:
@@ -1904,14 +1354,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash'
-            description: 'block hash for account'
-            properties:
-              hash:
-                x-oad-type: string
-                type: string                
+            $ref: '#/definitions/block_hash'               
           x-oad-type: response
       parameters:
         -
@@ -1965,14 +1408,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'stopped status'
-            description: 'stopped status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'
           x-oad-type: response     
     x-oad-type: operation
   /successors:
@@ -1982,17 +1418,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hashs'
-            description: 'list of block hashes'
-            properties:
-              blocks:
-                x-oad-type: array
-                type: array
-                items:
-                  x-oad-type: string
-                  type: string
+            $ref: '#/definitions/block_hashs'
           x-oad-type: response
       parameters:
         -
@@ -2017,16 +1443,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash list'
-            description: 'list of pairs of unchecked synchronizing'
-            properties:
-              blocks:
-                x-oad-type: array
-                type: array
-                items:
-                  type: string
+            $ref: '#/definitions/hash_block_pairs'
           x-oad-type: response
       parameters:
         -
@@ -2065,14 +1482,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'clear status'
-            description: 'clear status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean                
+            $ref: '#/definitions/status'               
           x-oad-type: response      
     x-oad-type: operation
   /unchecked_get:
@@ -2082,29 +1492,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'unchecked block data'
-            description: 'unchecked block data'
-            properties:
-              account:
-                x-oad-type: string
-                type: string                
-              work:
-                x-oad-type: string
-                type: string
-              source:
-                x-oad-type: string
-                type: string
-              representative:
-                x-oad-type: string
-                type: string
-              signature:
-                x-oad-type: string
-                type: string
-              type:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/block'
           x-oad-type: response
       parameters:
         -
@@ -2122,21 +1510,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'unchecked block datas'
-            description: 'unchecked keys, blocks hashes'
-            properties:
-              unchecked:
-                x-oad-type: array
-                type: array
-                items:
-                  type: object
-                  properties:
-                    key:                      
-                      type: string
-                    hash:
-                      type: string
+            $ref: '#/definitions/unchecked_blocks'
           x-oad-type: response
       parameters:
         -
@@ -2162,14 +1536,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'check status'
-            description: 'check status'
-            properties:
-              checked:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2187,22 +1554,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash'
-            description: 'block hash for account'
-            properties:
-              grpc_version:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              store_version:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              node_vendor:
-                x-oad-type: string
-                type: string                
+            $ref: '#/definitions/version_info'               
           x-oad-type: response      
     x-oad-type: operation
   /wallet_add:
@@ -2212,14 +1564,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'account number'
-            description: 'account number added'
-            properties:
-              account:
-                x-oad-type: string
-                type: string
+            $ref: '#/definitions/account'
           x-oad-type: response
       parameters:
         -
@@ -2251,25 +1596,31 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'balances sum'
-            description: 'sum of all accounts balance in wallet'
-            properties:
-              balance:
-                x-oad-type: integer
-                type: integer
-                format: int64
-              pending:
-                x-oad-type: integer
-                type: integer
-                format: int64                
+            $ref: '#/definitions/balance_info'               
           x-oad-type: response
       parameters:
         -
           name: wallet
           in: query
           description: 'Wallet to return balance for'
+          required: true
+          type: string            
+          x-oad-type: parameter                
+    x-oad-type: operation
+  /wallet_balances:
+    get:
+      summary: 'Returns how many rai is owned and how many have not yet been received by all accounts in wallet'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            $ref: '#/definitions/account_balance_info_pairs'               
+          x-oad-type: response
+      parameters:
+        -
+          name: wallet
+          in: query
+          description: 'Wallet to return balances for'
           required: true
           type: string            
           x-oad-type: parameter                
@@ -2281,14 +1632,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'change status'
-            description: 'change status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'        
           x-oad-type: response
       parameters:
         -
@@ -2313,14 +1657,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'check status'
-            description: 'check status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'        
           x-oad-type: response
       parameters:
         -
@@ -2345,14 +1682,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'created wallet id'
-            description: 'creaed wallet id'
-            properties:
-              wallet:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'        
           x-oad-type: response      
     x-oad-type: operation
   /wallet_destory:
@@ -2362,14 +1692,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'destroy status'
-            description: 'destroy status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2387,16 +1710,7 @@ paths:
         '200':
           description: 'Succeessful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'wallet'
-            description: 'wallet'
-            properties:
-              wallet:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  type: string
+            $ref: '#/definitions/json' 
           x-oad-type: response
       parameters:
         -
@@ -2414,17 +1728,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'account and hash pairs'
-            description: 'change status'
-            properties:
-              frontiers:
-                x-oad-type: object                
-                type: object
-                additionalProperties:
-                  type: string
-                  x-oad-type: string
+            $ref: '#/definitions/account_hash_pairs' 
           x-oad-type: response
       parameters:
         -
@@ -2441,14 +1745,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'valid status'
-            description: 'valid status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2466,14 +1763,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'change status'
-            description: 'change status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2491,14 +1781,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'locked status'
-            description: 'locked status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'          
           x-oad-type: response
       parameters:
         -
@@ -2516,17 +1799,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'hashes'
-            description: 'hashes'
-            properties:
-              hashes:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  type: string
-                  x-oad-type: string
+            $ref: '#/definitions/account_hash_pairs' 
           x-oad-type: response
       parameters:
         -
@@ -2560,14 +1833,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'account'
-            description: 'default representative'
-            properties:
-              representative:
-                x-oad-type: string
-                type: string    
+            $ref: '#/definitions/representative'   
           x-oad-type: response
       parameters:
         -
@@ -2585,14 +1851,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object    
-            title: 'set status'
-            description: 'set status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'          
           x-oad-type: response
       parameters:
         -
@@ -2617,16 +1876,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'block hash list'
-            description: 'block hash list'
-            properties:
-              hashes:
-                x-oad-type: array
-                type: array
-                items:
-                  type: string
+            $ref: '#/definitions/block_hashs' 
           x-oad-type: response
       parameters:
         -
@@ -2652,14 +1902,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'unlock status'
-            description: 'unlock status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'          
           x-oad-type: response
       parameters:
         -
@@ -2684,17 +1927,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'pairs of account and work'
-            description: 'pairs of account and work'
-            properties:
-              works:
-                x-oad-type: object
-                type: object
-                additionalProperties:
-                  type: string
-                  x-oad-type: string
+            $ref: '#/definitions/account_work_pairs' 
           x-oad-type: response
       parameters:
         -
@@ -2712,14 +1945,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'stop status'
-            description: 'stop status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2737,14 +1963,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'work'
-            description: 'work'
-            properties:
-              work:
-                x-oad-type: string
-                type: string    
+            $ref: '#/definitions/work'    
           x-oad-type: response
       parameters:
         -
@@ -2762,14 +1981,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'work'
-            description: 'work'
-            properties:
-              work:
-                x-oad-type: string
-                type: string    
+            $ref: '#/definitions/work'    
           x-oad-type: response
       parameters:
         -
@@ -2794,14 +2006,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'locked status'
-            description: 'locked status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2819,14 +2024,7 @@ paths:
         '200':
           description: 'Successful result'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'locked status'
-            description: 'locked status'
-            properties:
-              peers:
-                x-oad-type: string
-                type: string    
+            $ref: '#/definitions/peer_port_pairs'    
           x-oad-type: response                 
     x-oad-type: operation
   /work_peers_clear:
@@ -2836,14 +2034,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'clear status'
-            description: 'clear status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'          
           x-oad-type: response      
     x-oad-type: operation
   /work_set:
@@ -2853,14 +2044,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'set status'
-            description: 'set status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'         
           x-oad-type: response
       parameters:
         -
@@ -2892,14 +2076,7 @@ paths:
         '200':
           description: 'Successful operation'
           schema:
-            x-oad-type: object
-            type: object
-            title: 'check status'
-            description: 'check status'
-            properties:
-              status:
-                x-oad-type: boolean
-                type: boolean         
+            $ref: '#/definitions/status'          
           x-oad-type: response
       parameters:
         -
@@ -2918,11 +2095,11 @@ paths:
           x-oad-type: parameter
     x-oad-type: operation
 definitions:
-  balance_response:
+  balance_info:
     x-oad-type: object
     type: object
     title: balance
-    description: 'Raw balance of the account'
+    description: 'Raw balance of the account or total balance of wallet'
     properties:
       balance:
         x-oad-type: integer
@@ -2936,17 +2113,341 @@ definitions:
         title: pending
         description: 'Pending Balance of RAW not received'
         format: int64
-  
-  block:
+  block_count_info: 
+    x-oad-type: object
+    type: object   
+    properties:
+      count:
+        type: integer
+        format: int64
+      unchecked:
+        type: integer
+        format: int64
+  account:
+    x-oad-type: string
+    type: string    
+  account_history:  
+    x-oad-type: object
     type: object
-    required:
-      - account      
+    title: account history 
+    description: 'Account history info'
     properties:
       account:
+        x-oad-type: string
         type: string
-      wallet:
+        title: account
+      history:
+        x-oad-type: array
+        type: array
+        title: history
+        items:
+          type: object
+          properties:
+            type: {x-oad-type: string, type: string}
+            account: {x-oad-type: string, type: string}
+            local_timestamp: {x-oad-type: integer, type: integer, format: int64}
+            height: {x-oad-type: integer, type: integer, format: int64}
+            hash: {x-oad-type: string, type: string}
+  account_info:
+    x-oad-type: object
+    type: object
+    title: 'Account info'
+    description: ' Info for account'
+    properties:
+      frontier:
+        x-oad-type: string
+        type: string
+      open_block:
+        x-oad-type: string
+        type: string
+      representative_block:
+        x-oad-type: string
+        type: string
+      balance:
+        x-oad-type: string
+        type: string
+      modified_timestamp:
+        x-oad-type: integer
         type: integer
-
+        format: int64
+      block_count:
+        x-oad-type: integer
+        type: integer
+        format: int64
+      representative:
+        x-oad-type: string
+        type: string
+      weight:
+        x-oad-type: string
+        type: string
+  key:  
+    title: 'key'
+    description: 'Public or private key'    
+    x-oad-type: string
+    type: string
+  accounts:
+    x-oad-type: object
+    type: object    
+    description: 'account array'
+    properties:
+      accounts:
+        x-oad-type: array
+        type: array
+        items:
+          x-oad-type: string
+          type: string  
+  status:      
+    title: 'status'
+    description: 'operation status'    
+    x-oad-type: boolean
+    type: boolean
+  representative: 
+    x-oad-type: string
+    type: string        
+  block_hash:    
+    x-oad-type: string
+    type: string 
+  weight:
+    type: integer
+    format: int64
+  account_balance_info_pairs:
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/balance_info'
+  account_balance_pairs:
+    description: 'pairs of account and its balance'
+    type: object    
+    additionalProperties:
+      type: string
+  account_frontier_pairs:
+    type: object
+    additionalProperties:
+      type: string
+  count:
+    type: integer
+    format: int64
+  account_hash_pairs:
+    type: object
+    additionalProperties:
+      type: string
+  available_supply:
+    x-oad-type: integer
+    type: integer
+    format: int64
+  block:  
+    x-oad-type: object
+    type: object    
+    properties:
+      type:
+        x-oad-type: string
+        type: string
+      account:
+        x-oad-type: string
+        type: string
+      work:
+        x-oad-type: integer
+        type: integer
+        format: int64
+      source:
+        x-oad-type: string
+        type: string
+      previous:
+        x-oad-type: string
+        type: string
+      representative:
+        x-oad-type: string
+        type: string
+      signature:
+        x-oad-type: string
+        type: string
+  block_hash_info:
+    x-oad-type: object
+    type: object
+    properties:
+      block:
+        $ref: '#/definitions/block'
+      hash:
+        x-oad-type: string
+        type: string  
+  hash_block_pairs:
+    x-oad-type: object
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/block'
+  block_info:
+    x-oad-type: object
+    type: object
+    properties:
+      block_account:
+        x-oad-type: string
+        type: string
+      amount:
+        x-oad-type: string
+        type: string
+      contents:
+        $ref: '#/definitions/block'
+  blocks_info:
+    x-oad-type: object
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/block_info'
+  block_hashs:
+    x-oad-type: array
+    type: array
+    items:
+      type: string
+  account_delegator_pairs:
+    x-oad-type: object
+    type: object
+    description: pairs of delegator names and account
+    additionalProperties:
+      type: string
+  keypair:
+    x-oad-type: object
+    type: object
+    properties:
+      private:
+        type: string
+      public:
+        type: string
+      account:
+        type: string  
+  block_count_by_type:
+    x-oad-type: object
+    type: object
+    title: 'number of blocks'
+    description: 'the number of blocks in the ledger by type'
+    properties:
+      send:
+        x-oad-type: integer
+        type: integer
+        format: int64
+      receive:
+        x-oad-type: integer
+        type: integer
+        format: int64
+      open:
+        x-oad-type: integer
+        type: integer
+        format: int64
+      change:
+        x-oad-type: integer
+        type: integer
+        format: int64
+  blockchain_history:
+    x-oad-type: array
+    type: array
+    items:
+      type: object
+      properties:
+        hash:
+          type: string
+        type:
+          type: string
+        account:
+          type: string
+        amount:
+          type: string
+  account_ledger_pairs:
+    x-oad-type: object
+    type: object
+    additionalProperties:
+      type: object
+      properties:
+        frontier:
+          type: string
+        open_block:
+          type: string
+        representative_block:
+          type: string
+        balance:
+          type: string          
+        modified_timestamp:
+          type: integer
+          format: int64
+        block_count:
+          type: integer
+          format: int64
+  peer_port_pairs:
+    type: object
+    additionalProperties:
+      type: integer      
+      format: int64
+  pending:
+    type: object
+    additionalProperties:
+      type: object
+      properties:
+        amount:
+          type: string
+        source:
+          type: string  
+  amount:
+    x-oad-type: string
+    type: string
+  representative_weight_pairs:
+    x-oad-type: object
+    type: object
+    additionalProperties:
+      type: string
+  unchecked_blocks:
+    x-oad-type: array
+    type: array
+    items:
+      type: object
+      properties:
+        key:
+          type: string
+        hash:
+          type: string
+        contents:
+          $ref: '#/definitions/block'
+  version_info:
+    x-oad-type: object
+    type: object
+    properties:
+      grpc_versions:
+        type: integer
+        format: int64
+      store_version:
+        type: integer
+        format: int64
+      node_vendor:
+        type: string
+  wallet:
+    x-oad-type: string
+    type: string  
+  json_response:
+    x-oad-type: string
+    type: string
+  wallet_history:
+    x-oad-type: array
+    type: array
+    items: 
+      type: object
+      properties:
+        type: 
+          type: string
+        account:
+          type: string
+        amount:
+          type: string
+        block_account:
+          type: string
+        hash:
+          type: string
+        local_timestamp:
+          type: integer
+          format: int64
+  account_work_pairs:
+    x-oad-type: object
+    type: object
+    additionalProperties:
+      type: string
+  work:
+    x-oad-type: string
+    type: string
+  
 info:
   title: 'SuperGenius Tokens GRPC'
   version: '1.0'
