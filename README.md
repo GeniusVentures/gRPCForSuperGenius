@@ -34,7 +34,7 @@ the generated protocol buffer models.
 Pre-generated versions of these files are checked into the directories
 named OpenAPIv2, OpenAPIv3, and discovery.
 
-        go install ./generate-gnostic
+		go install ./generate-gnostic
         generate-gnostic --v2
         generate-gnostic --v3
         generate-gnostic --discovery
@@ -83,11 +83,11 @@ Install package using the command like this before put gnostic command.
 The latest release of Protocol Buffers can be found on [here](https://github.com/protocolbuffers/protobuf/releases/latest)
 
 ## 2. Now run the compiler, specifying the source directory and  the destination directory, and the path to your SuperGenius-OpenAPI.proto.
-mkdir ./grpc-build/cpp-build
-protoc -I=$PROTOC_PATH/include -I=proto-include -I=grpc-build --cpp_out=./grpc-build/cpp-build SuperGenius_OpenAPI.proto
-This generates the following files in grpc-build/cpp-build: 
-SuperGenius_OpenAPI.pb.h  
-SuperGenius_OpenAPI.pb.cc 
+		mkdir ./grpc-build/cpp-build
+		protoc -I=$PROTOC_PATH/include -I=proto-include -I=grpc-build --cpp_out=./grpc-build/cpp-build SuperGenius_OpenAPI.proto
+	This generates the following files in grpc-build/cpp-build: 
+		SuperGenius_OpenAPI.pb.h  
+		SuperGenius_OpenAPI.pb.cc 
 
 ## Copyright
 
