@@ -76,7 +76,19 @@ Install package using the command like this before put gnostic command.
 ## Convert OpenAPI file to proto file
 	
 	gnostic --grpc-out=grpc-build  openapi_yaml/SuperGenius-OpenAPI.yaml
-	
+
+# ⨁ From protocol buffer file to c++ source code for SuperGenius
+
+## 1. Install protocol buffer compiler.
+The latest release of Protocol Buffers can be found on [here](https://github.com/protocolbuffers/protobuf/releases/latest)
+
+## 2. Now run the compiler, specifying the source directory and  the destination directory, and the path to your SuperGenius-OpenAPI.proto.
+mkdir ./grpc-build/cpp-build
+protoc -I=$PROTOC_PATH/include -I=proto-include -I=grpc-build --cpp_out=./grpc-build/cpp-build SuperGenius_OpenAPI.proto
+This generates the following files in grpc-build/cpp-build: 
+SuperGenius_OpenAPI.pb.h  
+SuperGenius_OpenAPI.pb.cc 
+
 ## Copyright
 
 Copyright 2020, SuperGenius.
