@@ -1,0 +1,7517 @@
+swagger: "2.0"
+info: <
+  title: "SuperGenius Tokens GRPC"
+  version: "1.0"
+>
+base_path: "/"
+consumes: "application/json"
+produces: "application/json"
+paths: <
+  path: <
+    name: "/account_balance"
+    value: <
+      get: <
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account id to return balance of"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/balance_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_block_count"
+    value: <
+      get: <
+        summary: "Get number of blocks for a specific account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get number of blocks for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_count_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_create"
+    value: <
+      get: <
+        summary: "Creates a new account, insert next deterministic key in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to insert new account info"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "true by default. If false, disables work generation after creating account"
+                name: "work"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_get"
+    value: <
+      get: <
+        summary: "Get account number for the public key"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Public key to get account for"
+                name: "key"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_history"
+    value: <
+      get: <
+        summary: "Reports send or receive information for a account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get send/receive information for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Number of blocks to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_history"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_info"
+    value: <
+      get: <
+        summary: "Returns frontier, open block, change representative block, balance, last modified timestamp from local database and block count for account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to return info for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "if True, also returns the representative block"
+                name: "representatives"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "if True, also returns the voting weight"
+                name: "weight"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "if True, also returns the pending balance"
+                name: "pending"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_key"
+    value: <
+      get: <
+        summary: "Get the public key for account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get public key for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/key"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_list"
+    value: <
+      get: <
+        summary: "Lists all the accounts inside wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to get account list for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/accounts"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_move"
+    value: <
+      get: <
+        summary: "Moves accounts from source to wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "wallet to move accounts from"
+                name: "source"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "wallet to move accounts to"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "accounts to move"
+                name: "accounts"
+                type: "array"
+                items: <
+                  type: "string"
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_remove"
+    value: <
+      get: <
+        summary: "Remove account from wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to remove account from"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Account to remove"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_representative"
+    value: <
+      get: <
+        summary: "Returns the representative for account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to return info for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/representative"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_representative_set"
+    value: <
+      get: <
+        summary: "Sets the representative for account in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to use for account"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to set representative for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Representative to set to"
+                name: "representative"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If set, is used as the work for block"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hash"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/account_weight"
+    value: <
+      get: <
+        summary: "Returns the voting weight for account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/weight"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/accounts_balances"
+    value: <
+      get: <
+        summary: "Returns how many RAW is owned and how many have not yet been received by accounts list"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "List of accounts to return balances for"
+                name: "accounts"
+                type: "array"
+                items: <
+                  type: "string"
+                >
+                collection_format: "csv"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_balance_info_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/accounts_create"
+    value: <
+      get: <
+        summary: "Creates new accounts, insert next deterministic keys in wallet up to count"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to create new accounts in"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Number of accounts to create"
+                name: "count"
+                type: "integer"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If false, disables work generation after creating account"
+                name: "work"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/accounts"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/accounts_frontiers"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of account and block hash representing the head block for accounts list"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Accounts to return frontier blocks for"
+                name: "accounts"
+                type: "array"
+                items: <
+                  type: "string"
+                >
+                collection_format: "csv"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_frontier_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/accounts_pending"
+    value: <
+      get: <
+        summary: "Returns a list of block hashes which have not yet been received by these accounts"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Accounts to return frontier blocks for"
+                name: "accounts"
+                type: "array"
+                items: <
+                  type: "string"
+                >
+                collection_format: "csv"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max number of blocks to returns"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Minimum amount in raw per block"
+                name: "threshold"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_hash_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/available_supply"
+    value: <
+      get: <
+        summary: "Returns how many genius are in the public supply"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/available_supply"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/block"
+    value: <
+      get: <
+        summary: "Retrieves a json representation of block"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash of block to return representation for"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/block_account"
+    value: <
+      get: <
+        summary: "Returns the account containing block"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/block_count"
+    value: <
+      get: <
+        summary: "Reports the number of blocks in the ledger and unchecked synchronizing blocks"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_count_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/block_count_type"
+    value: <
+      get: <
+        summary: "Reports the number of blocks in the ledger by type (send, receive, open, change)"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_count_by_type"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/block_create"
+    value: <
+      get: <
+        summary: "Creates a json representations of new block based on input data & signed with private key or account in wallet for offline signing"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Type of block to create one of open, receive, change, send"
+                name: "type"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Account for the signed block"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Wallet to use"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Representative account for open and change blocks"
+                name: "representative"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Private key to use to open account for open blocks"
+                name: "key"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Destination account for send blocks"
+                name: "destination"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Amount in raw for send blocks"
+                name: "amount"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Balance in raw of account for send blocks"
+                name: "balance"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Previous block hash for receive, send and change blocks"
+                name: "previous"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Source block for open and receive blocks"
+                name: "source"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Work value to use for block from external source"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hash_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/blocks"
+    value: <
+      get: <
+        summary: "Retrieves a json representations of blocks"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "List of block hashes to return"
+                name: "hashs"
+                type: "array"
+                items: <
+                  type: "string"
+                >
+                collection_format: "csv"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/hash_block_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/blocks_info"
+    value: <
+      get: <
+        summary: "Retrieves a json representations of blocks with transaction amount & block account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "List of block hashes to return"
+                name: "hashs"
+                type: "array"
+                items: <
+                  type: "string"
+                >
+                collection_format: "csv"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If true, returns pending amount as well"
+                name: "pending"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If true, returns source account as well"
+                name: "source"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/blocks_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/bootstrap"
+    value: <
+      get: <
+        summary: "Initialize bootstrap to specific IP address and port"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                name: "address"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                name: "port"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/bootstrap_any"
+    value: <
+      get: <
+        summary: "Initialize multi-connection bootstrap to random peers"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/delegators"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of delegator names given account a representative and its balance"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to return delegators for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_balance_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/delegators_count"
+    value: <
+      get: <
+        summary: "Get number of delegators for a specific representative account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get number of delegators for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              json_reference: <
+                _ref: "#/definitions/count"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/deterministic_key"
+    value: <
+      get: <
+        summary: "Derive deterministic keypair from seed based on index"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Seed used to get keypair"
+                name: "seed"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Index of the generated keypair"
+                name: "index"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/keypair"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/frontier_count"
+    value: <
+      get: <
+        summary: "Reports the number of accounts in the ledger"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/frontier_count"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/frontiers"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of account and block hash representing the head block starting at account up to"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get frontier blocks for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max amount to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_hash_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/history"
+    value: <
+      get: <
+        summary: "Reports send/receive information for a chain of blocks"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash of block to receive history for"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max number of blocks to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/blockchain_history"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/keepalive"
+    value: <
+      get: <
+        summary: "Tells the node to send a keepalive packet to address:port"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "IP address of node to send keepalive packet to"
+                name: "address"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Port of node to send keepalive packet to"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/key_create"
+    value: <
+      get: <
+        summary: "Generates an adhoc random keypair"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/keypair"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/key_expand"
+    value: <
+      get: <
+        summary: "Derive public key and account number from private key"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Private key to generate account and public key of"
+                name: "key"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/keypair"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/krai_from_raw"
+    value: <
+      get: <
+        summary: "Divide a raw amount down by the krai ratio"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Amount in raw to convert to krai"
+                name: "amount"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/amount"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/krai_to_raw"
+    value: <
+      get: <
+        summary: "Multiply an krai amount by the krai ratio"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Amount in kria to convert to raw"
+                name: "amount"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/amount"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/ledger"
+    value: <
+      get: <
+        summary: "Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at account up to count"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to return blocks for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max number of blocks to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If use true, returns the representative as well"
+                name: "representative"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If use true, returns the voting weight as well"
+                name: "weight"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If use true, returns the pending amount as well"
+                name: "pending"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If use true, returns the pending amount as well"
+                name: "sorting"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_ledger_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/password_change"
+    value: <
+      get: <
+        summary: "Changes the password for wallet to password"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to change password for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Password to set"
+                name: "password"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/password_enter"
+    value: <
+      get: <
+        summary: "Enter the password in to wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to enter password for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Password to enter"
+                name: "password"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/password_valid"
+    value: <
+      get: <
+        summary: "Checks whether the password entered for wallet is valid"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to check password for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/payment_begin"
+    value: <
+      get: <
+        summary: "Begin a new payment session. Searches wallet for an account that\342\200\231s marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to begin payment in"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/payment_end"
+    value: <
+      get: <
+        summary: "End a payment session. Marks the account as available for use in a payment session"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to mark available"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to end payment session for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/payment_init"
+    value: <
+      get: <
+        summary: "Marks all accounts in wallet as available for being used as a payment session"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to init payment in"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/payment_wait"
+    value: <
+      get: <
+        summary: "Wait for payment of amount to arrive in account or until timeout milliseconds have elapsed"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to wait for payment"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Amount in raw of funds to wait for payment to arrive"
+                name: "amount"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Timeout in milliseconds to wait for"
+                name: "timeout"
+                type: "integer"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/peers"
+    value: <
+      get: <
+        summary: "Returns a list of pairs IPv6:port and its node network version"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/peer_port_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/pending"
+    value: <
+      get: <
+        summary: "Returns a list of pending block hashes with amount more or equal to threshold"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get list of pending block hashes for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max blocks to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Minimum amount in raw for blocks"
+                name: "threshold"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If true, returns source address as well"
+                name: "source"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hashs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/pending_exists"
+    value: <
+      get: <
+        summary: "Check whether block is pending by hash"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get list of pending block hashes for"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/process"
+    value: <
+      get: <
+        summary: "Publish block to the network"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Block to publish"
+                name: "block"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hash"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/receive"
+    value: <
+      get: <
+        summary: "Receive pending block for account in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Block to publish"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to receive block for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Block hash to receive"
+                name: "block"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If set, uses this work for the receive block"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hash"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/receive_minium"
+    value: <
+      get: <
+        summary: "Returns receive minimum for node"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/amount"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/receive_minium_set"
+    value: <
+      get: <
+        summary: "Set amount as new receive minimum for node until restart"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Amount in raw to set as minimum to receive"
+                name: "amount"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/representative"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of representative and its voting weight"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Max amount of representatives to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If true, sorts by weight"
+                name: "sorting"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/representative_weight_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/republish"
+    value: <
+      get: <
+        summary: "Rebroadcast blocks starting at hash to the network"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash of block to start rebroadcasting from"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Max number of blocks to rebroadcast"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If set, additionally rebroadcasts source chain blocks for receive/open up to sources depth"
+                name: "sources"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If set, additionally rebroadcasts destination chain blocks for receive/open up to destination depth"
+                name: "descriptions"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hashs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/search_pending"
+    value: <
+      get: <
+        summary: "Tells the node to look for pending blocks for any account in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to search for pending blocks"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/search_pending_all"
+    value: <
+      get: <
+        summary: "Tells the node to look for pending blocks for any account in all available wallet"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/send"
+    value: <
+      get: <
+        summary: "Send amount from source in wallet to destination"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet of account used to send funds"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to send funds from"
+                name: "source"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to send funds to"
+                name: "destination"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Amount in raw to send"
+                name: "amount"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If set, uses this work for the block"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "Account to send funds to"
+                name: "id"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hash"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/stop"
+    value: <
+      get: <
+        summary: "Stop the node"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/successors"
+    value: <
+      get: <
+        summary: "Returns a list of block hashes in the account chain ending at block up to count"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash of block to start returning successors for"
+                name: "block"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to receive block for"
+                name: "Max number of successor blocks to return"
+                type: "integer"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hashs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/unchecked"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of unchecked synchronizing block hash and its json representation up to count"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max amount of unchecked blocks to return"
+                name: "count"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to receive block for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Block hash to receive"
+                name: "block"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "If set, uses this work for the receive block"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/hash_block_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/unchecked_clear"
+    value: <
+      get: <
+        summary: "Clear unchecked synchronizing blocks"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/unchecked_get"
+    value: <
+      get: <
+        summary: "Retrieves a json representation of unchecked synchronizing block by hash"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash of unchecked block to get"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/unchecked_keys"
+    value: <
+      get: <
+        summary: "Retrieves unchecked database keys, blocks hashes, and a json representation of unchecked pending blocks starting from key up to count"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Starting key to return unchecked keys for"
+                name: "key"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max number of keys/blocks to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/unchecked_blocks"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/validate_account_number"
+    value: <
+      get: <
+        summary: "Check whether account is a valid account number"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account number to check"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/version"
+    value: <
+      get: <
+        summary: "Returns GRPC version of node"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/version_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_add"
+    value: <
+      get: <
+        summary: "Add an adhoc private key key to wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to add private key to"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Private key to add"
+                name: "key"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                in: "query"
+                description: "If false, disables work generation"
+                name: "work"
+                type: "boolean"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_balance_total"
+    value: <
+      get: <
+        summary: "Returns the sum of all accounts balances in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to return balance for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/balance_info"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_balances"
+    value: <
+      get: <
+        summary: "Returns how many rai is owned and how many have not yet been received by all accounts in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to return balances for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_balance_info_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_change_seed"
+    value: <
+      get: <
+        summary: "Changes seed for wallet to seed"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to change seed for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Seed to change wallet to"
+                name: "seed"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_contains"
+    value: <
+      get: <
+        summary: "Check whether wallet contains account"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to check contains account"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to check exists in wallet"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_create"
+    value: <
+      get: <
+        summary: "Creates a new random wallet id"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_destory"
+    value: <
+      get: <
+        summary: "Destroys wallet and all contained accounts"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to destroy"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_export"
+    value: <
+      get: <
+        summary: "Return a json representation of wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to export"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Succeessful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/json"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_frontiers"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of account and block hash representing the head block starting for accounts from"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to return frontiers for"
+                name: "wallet"
+                type: "string"
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_hash_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_key_valid"
+    value: <
+      get: <
+        summary: "Returns if a wallet key is valid"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to check key is valid"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_lock"
+    value: <
+      get: <
+        summary: "Locks a wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to lock"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_locked"
+    value: <
+      get: <
+        summary: "Checks whether wallet is locked"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to check if locked"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_pending"
+    value: <
+      get: <
+        summary: "Returns a list of block hashes which not yet been received by accounts in this wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to get list of pending block hashes for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max amount of blocks to return"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Minimum amount in raw per block"
+                name: "threthold"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_hash_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_representative"
+    value: <
+      get: <
+        summary: "Returns the default representative for wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to get default representative for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/representative"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_representative_set"
+    value: <
+      get: <
+        summary: "Sets the default representative for wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to set default representative account for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Representative account to set for wallet"
+                name: "representative"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_republish"
+    value: <
+      get: <
+        summary: "Rebroadcast blocks for accounts from wallet starting at frontier down to count to the network"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to rebroadcast blocks for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Max amount of blocks to rebroadcast since frontier block"
+                name: "count"
+                type: "integer"
+                format: "int64"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/block_hashs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_unlock"
+    value: <
+      get: <
+        summary: "Unlocks wallet using password"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to unlock"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Password to enter"
+                name: "password"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/wallet_work_get"
+    value: <
+      get: <
+        summary: "Returns a list of pairs of account and work from wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to return work for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/account_work_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_cancel"
+    value: <
+      get: <
+        summary: "Stop generating work for block"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash to stop generating work for"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_generate"
+    value: <
+      get: <
+        summary: "Generates work for block"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash to start generating work for"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/work"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_get"
+    value: <
+      get: <
+        summary: "Retrieves work for account in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to get account work for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to get work for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/work"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_peer_add"
+    value: <
+      get: <
+        summary: "Add specific IP address and port as work peer for node until restart"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to check if locked"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_peers"
+    value: <
+      get: <
+        summary: "Retreive work peers"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful result"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/peer_port_pairs"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_peers_clear"
+    value: <
+      get: <
+        summary: "Clear work peers node list until restart"
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_set"
+    value: <
+      get: <
+        summary: "Set work for account in wallet"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Wallet to set work for account for"
+                name: "wallet"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Account to set work for"
+                name: "account"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Work to set for account in wallet"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+  path: <
+    name: "/work_validate"
+    value: <
+      get: <
+        summary: "Check whether work is valid for block"
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Work to validate"
+                name: "work"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        parameters: <
+          parameter: <
+            non_body_parameter: <
+              query_parameter_sub_schema: <
+                required: true
+                in: "query"
+                description: "Hash of block to validate work for"
+                name: "hash"
+                type: "string"
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "parameter\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+        responses: <
+          response_code: <
+            name: "200"
+            value: <
+              response: <
+                description: "Successful operation"
+                schema: <
+                  schema: <
+                    _ref: "#/definitions/status"
+                  >
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "response\n"
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "operation\n"
+        >
+      >
+    >
+  >
+>
+definitions: <
+  additional_properties: <
+    name: "balance_info"
+    value: <
+      title: "balance"
+      description: "Raw balance of the account or total balance of wallet"
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "balance"
+          value: <
+            format: "int64"
+            title: "balance"
+            description: "RAW balance"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "pending"
+          value: <
+            format: "int64"
+            title: "pending"
+            description: "Pending Balance of RAW not received"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block_count_info"
+    value: <
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "count"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+          >
+        >
+        additional_properties: <
+          name: "unchecked"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "account"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_history"
+    value: <
+      title: "account history"
+      description: "Account history info"
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "account"
+          value: <
+            title: "account"
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "history"
+          value: <
+            title: "history"
+            type: <
+              value: "array"
+            >
+            items: <
+              schema: <
+                type: <
+                  value: "object"
+                >
+                properties: <
+                  additional_properties: <
+                    name: "type"
+                    value: <
+                      type: <
+                        value: "string"
+                      >
+                      vendor_extension: <
+                        name: "x-oad-type"
+                        value: <
+                          yaml: "string\n"
+                        >
+                      >
+                    >
+                  >
+                  additional_properties: <
+                    name: "account"
+                    value: <
+                      type: <
+                        value: "string"
+                      >
+                      vendor_extension: <
+                        name: "x-oad-type"
+                        value: <
+                          yaml: "string\n"
+                        >
+                      >
+                    >
+                  >
+                  additional_properties: <
+                    name: "local_timestamp"
+                    value: <
+                      format: "int64"
+                      type: <
+                        value: "integer"
+                      >
+                      vendor_extension: <
+                        name: "x-oad-type"
+                        value: <
+                          yaml: "integer\n"
+                        >
+                      >
+                    >
+                  >
+                  additional_properties: <
+                    name: "height"
+                    value: <
+                      format: "int64"
+                      type: <
+                        value: "integer"
+                      >
+                      vendor_extension: <
+                        name: "x-oad-type"
+                        value: <
+                          yaml: "integer\n"
+                        >
+                      >
+                    >
+                  >
+                  additional_properties: <
+                    name: "hash"
+                    value: <
+                      type: <
+                        value: "string"
+                      >
+                      vendor_extension: <
+                        name: "x-oad-type"
+                        value: <
+                          yaml: "string\n"
+                        >
+                      >
+                    >
+                  >
+                >
+              >
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "array\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_info"
+    value: <
+      title: "Account info"
+      description: " Info for account"
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "frontier"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "open_block"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "representative_block"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "balance"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "modified_timestamp"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "block_count"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "representative"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "weight"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "key"
+    value: <
+      title: "key"
+      description: "Public or private key"
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "accounts"
+    value: <
+      description: "account array"
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "accounts"
+          value: <
+            type: <
+              value: "array"
+            >
+            items: <
+              schema: <
+                type: <
+                  value: "string"
+                >
+                vendor_extension: <
+                  name: "x-oad-type"
+                  value: <
+                    yaml: "string\n"
+                  >
+                >
+              >
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "array\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "status"
+    value: <
+      title: "status"
+      description: "operation status"
+      type: <
+        value: "boolean"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "boolean\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "representative"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block_hash"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "weight"
+    value: <
+      format: "int64"
+      type: <
+        value: "integer"
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_balance_info_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          _ref: "#/definitions/balance_info"
+        >
+      >
+      type: <
+        value: "object"
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_balance_pairs"
+    value: <
+      description: "pairs of account and its balance"
+      additional_properties: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_frontier_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+    >
+  >
+  additional_properties: <
+    name: "count"
+    value: <
+      format: "int64"
+      type: <
+        value: "integer"
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_hash_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+    >
+  >
+  additional_properties: <
+    name: "available_supply"
+    value: <
+      format: "int64"
+      type: <
+        value: "integer"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "integer\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block"
+    value: <
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "type"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "account"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "work"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "source"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "previous"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "representative"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "signature"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block_hash_info"
+    value: <
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "block"
+          value: <
+            _ref: "#/definitions/block"
+          >
+        >
+        additional_properties: <
+          name: "hash"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "hash_block_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          _ref: "#/definitions/block"
+        >
+      >
+      type: <
+        value: "object"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block_info"
+    value: <
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "block_account"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "amount"
+          value: <
+            type: <
+              value: "string"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "string\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "contents"
+          value: <
+            _ref: "#/definitions/block"
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "blocks_info"
+    value: <
+      additional_properties: <
+        schema: <
+          _ref: "#/definitions/block_info"
+        >
+      >
+      type: <
+        value: "object"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block_hashs"
+    value: <
+      type: <
+        value: "array"
+      >
+      items: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "array\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_delegator_pairs"
+    value: <
+      description: "pairs of delegator names and account"
+      additional_properties: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "keypair"
+    value: <
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "private"
+          value: <
+            type: <
+              value: "string"
+            >
+          >
+        >
+        additional_properties: <
+          name: "public"
+          value: <
+            type: <
+              value: "string"
+            >
+          >
+        >
+        additional_properties: <
+          name: "account"
+          value: <
+            type: <
+              value: "string"
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "block_count_by_type"
+    value: <
+      title: "number of blocks"
+      description: "the number of blocks in the ledger by type"
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "send"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "receive"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "open"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+        additional_properties: <
+          name: "change"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+            vendor_extension: <
+              name: "x-oad-type"
+              value: <
+                yaml: "integer\n"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "blockchain_history"
+    value: <
+      type: <
+        value: "array"
+      >
+      items: <
+        schema: <
+          type: <
+            value: "object"
+          >
+          properties: <
+            additional_properties: <
+              name: "hash"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "type"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "account"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "amount"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "array\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_ledger_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          type: <
+            value: "object"
+          >
+          properties: <
+            additional_properties: <
+              name: "frontier"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "open_block"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "representative_block"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "balance"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "modified_timestamp"
+              value: <
+                format: "int64"
+                type: <
+                  value: "integer"
+                >
+              >
+            >
+            additional_properties: <
+              name: "block_count"
+              value: <
+                format: "int64"
+                type: <
+                  value: "integer"
+                >
+              >
+            >
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "peer_port_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          format: "int64"
+          type: <
+            value: "integer"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+    >
+  >
+  additional_properties: <
+    name: "pending"
+    value: <
+      additional_properties: <
+        schema: <
+          type: <
+            value: "object"
+          >
+          properties: <
+            additional_properties: <
+              name: "amount"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "source"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+    >
+  >
+  additional_properties: <
+    name: "amount"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "representative_weight_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "unchecked_blocks"
+    value: <
+      type: <
+        value: "array"
+      >
+      items: <
+        schema: <
+          type: <
+            value: "object"
+          >
+          properties: <
+            additional_properties: <
+              name: "key"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "hash"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "contents"
+              value: <
+                _ref: "#/definitions/block"
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "array\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "version_info"
+    value: <
+      type: <
+        value: "object"
+      >
+      properties: <
+        additional_properties: <
+          name: "grpc_versions"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+          >
+        >
+        additional_properties: <
+          name: "store_version"
+          value: <
+            format: "int64"
+            type: <
+              value: "integer"
+            >
+          >
+        >
+        additional_properties: <
+          name: "node_vendor"
+          value: <
+            type: <
+              value: "string"
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "wallet"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "json_response"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "wallet_history"
+    value: <
+      type: <
+        value: "array"
+      >
+      items: <
+        schema: <
+          type: <
+            value: "object"
+          >
+          properties: <
+            additional_properties: <
+              name: "type"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "account"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "amount"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "block_account"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "hash"
+              value: <
+                type: <
+                  value: "string"
+                >
+              >
+            >
+            additional_properties: <
+              name: "local_timestamp"
+              value: <
+                format: "int64"
+                type: <
+                  value: "integer"
+                >
+              >
+            >
+          >
+        >
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "array\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "account_work_pairs"
+    value: <
+      additional_properties: <
+        schema: <
+          type: <
+            value: "string"
+          >
+        >
+      >
+      type: <
+        value: "object"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "object\n"
+        >
+      >
+    >
+  >
+  additional_properties: <
+    name: "work"
+    value: <
+      type: <
+        value: "string"
+      >
+      vendor_extension: <
+        name: "x-oad-type"
+        value: <
+          yaml: "string\n"
+        >
+      >
+    >
+  >
+>
