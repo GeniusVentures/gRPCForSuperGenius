@@ -1,0 +1,224 @@
+paths:
+  /room_list:
+    get:
+      summary: 'Lists all the rooms'
+      responses:
+        '200':
+          description: 'Successful result'
+          schema:
+            $ref: '#/definitions/rooms'
+          x-oad-type: response
+    x-oad-type: operation
+  /room_get:
+    get:
+      summary: 'Creates or get a new room with specific topic'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/room_info'
+          x-oad-type: response
+      parameters:
+        - 
+          name: topic
+          in: query
+          description: 'Topic to insert new room info'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /room_join:
+    get:
+      summary: 'Join the specific room'
+      responses:
+        '200': 
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/status'
+          x-oad-type: response
+      parameters:
+        - 
+          name: wallet
+          in: query
+          description: 'Wallet to join the room'
+          required: true
+          type: string
+          x-oad-type: parameter
+        - 
+          name: topic
+          in: query
+          description: 'Topic of room to join'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /room_leave:
+    get:
+      summary: 'Leave the specific room'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/status'
+          x-oad-type: response
+      parameters:
+        - 
+          name: wallet
+          in: query
+          description: 'Wallet to leave the given room'
+          required: true
+          type: string
+          x-oad-type: parameter
+        - 
+          name: topic
+          in: query
+          description: 'Topic of room to leave'
+          required: true
+          type: string
+          x-oad-type: parameter
+    x-oad-type: operation
+  /broadcast_message:
+    get:
+      summary: 'Broadcast the message to the given room'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/status'
+          x-oad-type: response
+      parameters:
+        - 
+          name: wallet
+          in: query
+          description: 'Wallet to broadcast the message'
+          required: true
+          type: string
+          x-oad-type: parameter
+        - 
+          name: topic
+          in: query
+          description: 'Topic of room to broadcast the message'
+          required: true
+          type: string
+        - 
+          name: message
+          in: query
+          description: 'Message to be broadcast'
+          required: true
+          type: string
+    x-oad-type: operation
+  /send_message:
+    get:
+      summary: 'Send the message to the specific peer in the given room'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/status'
+          x-oad-type: response
+      parameters:
+        - 
+          name: peer
+          in: query
+          required: true
+          type: string
+          x-oad-type: parameter
+          description: 'Target peer to send the message'
+        - 
+          name: message
+          in: query
+          required: true
+          type: string
+          x-oad-type: parameter
+          description: 'Message content to be send'
+    x-oad-type: operation
+  /has_peer:
+    get:
+      summary: 'See if the give peer is in the room'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/status'
+          x-oad-type: response
+      parameters:
+        - 
+          name: peer
+          in: query
+          required: true
+          type: string
+          x-oad-type: parameter
+          description: 'Peer to check if it is in the given room'
+        - 
+          name: topic
+          in: query
+          required: true
+          type: string
+          description: 'Topic of room to be check if it has the given peer'
+          x-oad-type: parameter
+    x-oad-type: operation
+  /peer_list:
+    get:
+      summary: 'Lists all the peers in the room'
+      responses:
+        '200': 
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/peers'
+definitions:
+  peers:
+    x-oad-type: object
+    type: object
+    description: 'peers array in the room'
+    properties: 
+      peers:
+        x-oad-type: array
+        type: array
+        items:
+          x-oad-type: string
+          type: string
+  room_info:
+    x-oad-type: object
+    type: object
+    title: PubsubRoom
+    description: 'Channel for pubsub communication between nodes'
+    properties:
+      topic:
+        x-oad-type: string
+        type: string
+      port:
+        x-oad-type: integer
+        format: int32
+  rooms:
+    x-oad-type: object
+    type: object
+    description: 'room array'
+    properties: 
+      rooms:
+        x-oad-type: array
+        type: array
+        items:
+          x-oad-type: string
+          type: string
+  status:
+    title: 'status'
+    description: 'Operation status'
+    x-oad-type: object
+    type: object
+    properties: 
+      code:
+        x-oad-type: integer
+        type: integer
+        format: int64
+      descr:
+        x-oad-type: string
+        type: string
+info:
+  title: 'SuperGenius Processing Tokens GRPC'
+  version: '1.0'
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+swagger: '2.0'
